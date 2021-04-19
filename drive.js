@@ -1,6 +1,7 @@
 const os = require('os');
 const path = require('path')
-const fs = require('fs/promises')
+const fs = require('fs/promises');
+const { Dirent } = require('fs');
 
 const ALPS_DRIVE = path.join(os.tmpdir(), 'test/');
 console.log('Mon dossier racine de stockage ; ' + ALPS_DRIVE);
@@ -22,10 +23,15 @@ function listFolder(path){
         myResult.push({name: element.name, isFolder: element.isDirectory()})
     })
     return myResult
-    }).catch(() =>
-        console.log('Aucun dossier ou fichier trouvé')
-    )
-    }
+    }).catch((err) =>{
+        if (err.code == 'ENOTDIR'){
+            console.log("je suis dans la fonction")
+            return fs.readFile(path);
+        }
+        })
+}
+
+
 
 module.exports = {
     createRootFolder: createRootFolder,
