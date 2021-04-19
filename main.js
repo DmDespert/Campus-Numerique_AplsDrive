@@ -1,3 +1,13 @@
-let server = require('./server')
+const drive = require('./drive')
+const server = require('./server')
 
-console.log('hello la famille')
+/*
+drive.createRootFolder().then(() => {
+    server.start()
+})
+*/
+
+const creationPromise = drive.createRootFolder();
+creationPromise.then(() => {
+    server.start();
+})
