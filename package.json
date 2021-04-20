@@ -1,14 +1,14 @@
 {
   "name": "alps-drive",
   "version": "1.0.0",
-  "description": "projet nodeJs du campus numérique",
+  "description": "nodejs - campus numérique",
   "main": "index.js",
   "scripts": {
     "dev": " nodemon main.js",
     "debug": " nodemon --inspect main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Alexis Cosentino",
+  "author": "DmDespert",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
