@@ -24,24 +24,32 @@ function listFolder(path) {
         return myResult
     }).catch((err) => {
         if (err.code == 'ENOTDIR') {
-            console.log("Hello world")
+            console.error(err);
             return fs.readFile(path);
         }
     })
 }
 
-function deleteItem(item) {
-    fs.unlink(path, (err) => {
+function deleteItem(path) {
+    return fs.rm(path, {recursive:true}, (err) => {
         if (err) {
-            console.error(err)
-            return
+            console.error(err.message);
+            return;
         }
+        console.log("File terminated");
+
+        listFolder(path);
     })
+};
+
+function addItem(path) {
+    return fs.mkdir(path);
 }
 
 module.exports = {
     createRootFolder: createRootFolder,
     listFolder: listFolder,
     deleteItem: deleteItem,
+    addItem: addItem,
     ALPS_DRIVE: ALPS_DRIVE
 }
